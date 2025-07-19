@@ -2,21 +2,22 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Search } from 'lucide-react';
+import { ArrowLeft, Search, Wallet, User2, RefreshCcw, Gift, BookOpenCheck, MessageCircleMore } from 'lucide-react';
 import axios from 'axios';
 import Link from 'next/link';
-import {
-  Wallet,
-  User2,
-  RefreshCcw,
-  Gift,
-  BookOpenCheck,
-  MessageCircleMore,
-} from 'lucide-react';
+
+// ✅ Define the type based on CoinGecko response
+interface Coin {
+  id: string;
+  name: string;
+  symbol: string;
+  image: string;
+  current_price: number;
+}
 
 export default function WalletPage() {
   const router = useRouter();
-  const [coins, setCoins] = useState([]);
+  const [coins, setCoins] = useState<Coin[]>([]);
   const [search, setSearch] = useState('');
   const [showMenu, setShowMenu] = useState(false);
 
